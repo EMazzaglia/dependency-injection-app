@@ -1,16 +1,20 @@
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Node {
- public List<Node> sons = new ArrayList<>();
- public Node before;
- public String content ;
+public class Node { /*Es como un registro de que tiene una cierta clase*/
+ public List<Dependencia> dependencias = new ArrayList<>();
+ public  Annotation[] anotaciones;
+ public Class[] clases;
 
- public Node(Node before){
-  this.before = before;
+ public Node(Annotation[] anotaciones ,Class[] clases ){
+  this.anotaciones = anotaciones;
+  this.clases = clases;
+
  }
-
- public void createSonNode(){
-  this.sons.add(new Node(this));
+ private void setDependencias(){
+  Arrays.stream(this.clases).collect(Collectors.toList()).forEach(c -> this.dependencias.add(new Dependencia(c)));
  }
 }

@@ -2,19 +2,16 @@ import java.util.List;
 
 public class ServiceLocator {/*Es como un repositrorio de depdendencias , las conoce a todas y debe darlas cuando se las pidan*/
   /*Le pongo un singleton*/
-  private ServiceLocator instance;
- public List<Dependencia> dependencias;
+  private final static ServiceLocator instance = new ServiceLocator();
+ public List<Node> nodos;
 
   private ServiceLocator() {
   }
 
-  public ServiceLocator getInstance() {
-    if (this.instance == null) {
-      this.instance = new ServiceLocator();
-      return this.instance;
-    } else {
-      return this.instance;
-    }
+  public static ServiceLocator getInstance() {return instance;}
+
+  public void addNode(Node node){
+    this.nodos.add(node);
   }
 
 }
