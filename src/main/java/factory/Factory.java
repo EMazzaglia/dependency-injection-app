@@ -26,8 +26,9 @@ public class Factory {
             // Ponemos el campo en publico para poder modificarlo. field = motor
             field.setAccessible(true);
 
-            // Ahora seteamos el campo motor de nuestra instancia de FordFiesta con la instancia de Motor
-            // Es decir: FordFiesta -> motor = new ToyotaMotor()
+            // Ahora seteamos el campo motor de nuestra instancia de FordFiesta
+            // Con la instancia de Motor que creamos
+            // Es decir: Simulamos un newObject.motor = objToInject (new ToyotaMotor)
             field.set(newObject, objToInject);
             // Ponemos el campo en privado para no dejarlo publico.
             field.setAccessible(false);
