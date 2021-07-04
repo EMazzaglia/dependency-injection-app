@@ -1,6 +1,5 @@
 package entity;
 
-public interface Motor
-{
+public interface Motor {
 	public void carburar();
 }

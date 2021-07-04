@@ -2,15 +2,21 @@ package test;
 
 import entity.Auto;
 import entity.FordFiesta;
+import entity.ToyotaCorolla;
 import factory.ComponentScan;
 import factory.Factory;
 
-@ComponentScan()
+@ComponentScan("entity")
 public class MyTestSpring {
     public static void main (String[] args) throws Exception {
-        Auto auto = (Auto) Factory.getObject(FordFiesta.class);
-        auto.regular();
-        auto.acelerar();
-        auto.frenar();
+        Auto ford = Factory.getObject(FordFiesta.class);
+        ford.regular();
+        ford.acelerar();
+        ford.frenar();
+        Factory.resetFactory();
+        Auto toyota = Factory.getObject(ToyotaCorolla.class);
+        toyota.regular();
+        toyota.acelerar();
+        toyota.frenar();
     }
 }

@@ -4,11 +4,8 @@ import factory.Injected;
 
 
 public class FordFiesta implements Auto {
-    @Injected(implementation = ToyotaMotor.class)
+    @Injected(implementation = FordMotor.class)
     private Motor motor;
-
-//	@Injected(implementation=BujiaBosh.class, count=5)
-//	private List<Bujia> bujias;
 
     @Override
     public void acelerar() {

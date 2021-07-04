@@ -10,10 +10,22 @@ import java.util.stream.Collectors;
 
 public class Factory {
 
+    static Boolean firstTime = true;
+    static String packageToScan;
+
+    public static void resetFactory(){
+        firstTime = true;
+    }
+
     // Comentarios realizados para el caso: Factory.getObject(FordFiesta.class);
-    public static Object getObject(Class<?> c) throws Exception {
-        String packageToScan = getPackageToScan();
-        
+    public static <T> T getObject(Class<?> c) throws Exception {
+
+        if(firstTime){
+            packageToScan = getPackageToScan();
+        }
+
+        firstTime = false;
+
         // Tira error si el paquete que tiene comp scan no existe.
         if(noCoincideConNingunPackage(packageToScan)){
             throw new Exception("El paquete especificado no existe en el proyecto.");
@@ -34,7 +46,6 @@ public class Factory {
 
                 // EN EL CASO DE QUE NO TENGO IMPLE ESPECIFICADA.
                 Boolean noTieneImplementacionEspecificada = injected.implementation().getTypeName().equals(new Object().getClass().getTypeName());
-
 
                 Class<?> classToInject =  noTieneImplementacionEspecificada ? buscarImplementacionValida(field,clasesDelPaquete) : injected.implementation();
 
@@ -69,7 +80,7 @@ public class Factory {
             }
         }
         // Retornamos el objeto FordFiesta con un motor Toyota
-        return newObject;
+        return (T) newObject;
     }
 
     private static Class<?> buscarImplementacionValida(Field field, List<Class<?>> clasesDelPaquete) throws Exception {

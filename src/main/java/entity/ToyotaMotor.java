@@ -1,19 +1,18 @@
 package entity;
 
 import factory.Injected;
-import java.util.LinkedList;
+import java.util.List;
 
 
-public class ToyotaMotor implements Motor
-{
+public class ToyotaMotor implements Motor {
 
-	@Injected(implementation = BujiaBosh.class, count=5)
-	private LinkedList<Bujia> bujias;
+	@Injected(implementation = BujiaChina.class, count=3)
+	private List<Bujia> bujias;
 
 	@Override
 	public void carburar()
 	{
-		System.out.println("Carburando el motor Marca Toyota");
+		System.out.println("Carburando el motor Toyota");
 	}
 
 }
