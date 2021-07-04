@@ -31,23 +31,25 @@ public class Factory {
 
                 //Verificamos si existe un campo q implemente una interface tipo Collection o una classe que implemente la misma
                 if (Collection.class.isAssignableFrom(field.getType())){
-                    ArrayList myArray = new ArrayList();
+                    Collection myArray = null;
 
                     //verifico se el campo es una interface
-                    if(field.getType().isInterface()) {
+                    if (field.getType().isInterface()) {
+                        myArray = new ArrayList();
                         // en caso de que sea interface
                         for (int j = 0; j < injected.count(); j++) {
                             myArray.add(getObject(classToInject));
                         }
-                    }else{
-                        // en caso de que implemente Collection(POR AHORA SOLO FUNCIONA CON ARRAYLIST)
-                        // aca deberia agregar una logica para que se pueda instanciar cualquier tipo de lista que implemente Collection
+                    } else {
+                        myArray = (Collection) field.getType().newInstance();
                         for (int j = 0; j < injected.count(); j++) {
                             myArray.add(getObject(classToInject));
                         }
                     }
+
                     field.set(newObject, myArray);
                 }else{
+
                     // Ahora seteamos el campo motor de nuestra instancia de FordFiesta
                     // Con la instancia de Motor que creamos
                     // Es decir: Simulamos un newObject.motor = objToInject (new ToyotaMotor)
