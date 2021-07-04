@@ -1,11 +1,8 @@
 package entity;
 
 import factory.Injected;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
+
 
 public class ToyotaMotor implements Motor
 {
@@ -16,7 +13,7 @@ public class ToyotaMotor implements Motor
 	@Override
 	public void carburar()
 	{
-		System.out.println("Carburando el motor japones");
+		System.out.println("Carburando el motor Marca Toyota");
 	}
 
 }

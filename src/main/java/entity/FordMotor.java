@@ -1,7 +1,6 @@
 package entity;
 
-public class FordMotorFiesta implements Motor
-{
+public class FordMotor implements Motor {
 
 	@Override
 	public void carburar()
