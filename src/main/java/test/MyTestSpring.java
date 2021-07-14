@@ -13,7 +13,6 @@ public class MyTestSpring {
         ford.regular();
         ford.acelerar();
         ford.frenar();
-        Factory.resetFactory();
         Auto toyota = Factory.getObject(ToyotaCorolla.class);
         toyota.regular();
         toyota.acelerar();

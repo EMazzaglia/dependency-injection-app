@@ -10,27 +10,22 @@ import java.util.stream.Collectors;
 
 public class Factory {
 
-    static Boolean firstTime = true;
-    static String packageToScan;
+    static List<Class<?>> clasesDelPaquete;
 
-    public static void resetFactory(){
-        firstTime = true;
-    }
-
-    // Comentarios realizados para el caso: Factory.getObject(FordFiesta.class);
     public static <T> T getObject(Class<?> c) throws Exception {
 
-        if(firstTime){
-            packageToScan = getPackageToScan();
-        }
-
-        firstTime = false;
-
+        String packageToScan = getPackageToScan();
         // Tira error si el paquete que tiene comp scan no existe.
         if(noCoincideConNingunPackage(packageToScan)){
             throw new Exception("El paquete especificado no existe en el proyecto.");
         }
-        List<Class<?>> clasesDelPaquete = getClassesInPackage(packageToScan);
+
+        clasesDelPaquete = getClassesInPackage(packageToScan);
+
+        return getObjectAux( c );
+    }
+    // Comentarios realizados para el caso: Factory.getObject(FordFiesta.class);
+    public static <T> T getObjectAux(Class<?> c) throws Exception {
 
         // Generamos una nueva instancia de FordFiesta.class
         Object newObject = c.newInstance();
